@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+//#include <memory>
 extern "C" {
 	#include "libavformat/avformat.h"
 }
@@ -8,7 +9,7 @@ class Demuxer {
 public:
 	Demuxer(const std::string &file_name);
 	~Demuxer();
-	AVCodecContext* video_codec_context();
+	AVCodecParameters* video_codec_context();
 	int video_stream_index() const;
 	AVRational time_base() const;
 	bool operator()(AVPacket &packet);
