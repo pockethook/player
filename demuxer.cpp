@@ -2,7 +2,6 @@
 #include "ffmpeg.h"
 
 Demuxer::Demuxer(const std::string &file_name) {
-	av_register_all();
 	ffmpeg::check(avformat_open_input(
 		&format_context_, file_name.c_str(), nullptr, nullptr));
 	ffmpeg::check(avformat_find_stream_info(
