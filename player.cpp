@@ -56,7 +56,7 @@ void Player::demultiplex() {
 
 			// Move into queue if first video stream
 			if (packet->stream_index == demuxer_->video_stream_index()) {
-				if (!packet_queue_->push(move(packet))) {
+				if (!packet_queue_->push(std::move(packet))) {
 					break;
 				}
 			}
@@ -116,7 +116,7 @@ void Player::decode_video() {
 					(*format_converter_)(
 						frame_decoded.get(), frame_converted.get());
 
-					if (!frame_queue_->push(move(frame_converted))) {
+					if (!frame_queue_->push(std::move(frame_converted))) {
 						break;
 					}
 				}
